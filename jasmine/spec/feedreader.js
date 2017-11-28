@@ -128,7 +128,7 @@ describe('Initial Entries', function() {
                 feedF = $('.feed .entry > h2').first().text();
             done();
             });
-        };
+        }
         
 
         beforeEach(function(done) {
