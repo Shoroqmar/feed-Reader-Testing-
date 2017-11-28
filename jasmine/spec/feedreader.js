@@ -87,63 +87,54 @@ describe('The menu', function() {
     });//it menue hidden
 });//the menu 
     
+    
     /* TODO: Write a new test suite named "Initial Entries" */
 describe('Initial Entries', function() { 
-
-
-
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-    
-        
-      beforeEach(function(done) {
-               loadFeed(0,function(){
-                      done();
-   });
-    
-});//berfore each 
-    
-  it("Had at least one entry", function() {
-   expect($('.feed .entry').length).toBeGreaterThan(0);
-  });
-        
-        
-    
-    
-    
-}); //initial entries
-   
-    describe('New Feed Selection', function() {
-         /*TODO: Write a test that ensures when a new feed is loaded
-         by the loadFeed function that the content actually changes.
-          Remember, loadFeed() is asynchronous.*/
-                   var feedF;
-
-        function updateFeed(done) {
-            loadFeed(0, function(){
-                feedF = $('.feed .entry > h2').first().text();
-            done();
-            });
-        }
-        
-
-        beforeEach(function(done) {
-            loadFeed(2, done);
-        });
-
-
-
-    it ('checking loadFeed loads a new feed', function (done){
-        var newFeed = $('.feed .entry > h2').first().text();
-        expect( newFeed ).not.toBe( feedF );
      
-done();
-     });    
-   });
+          beforeEach(function(done) {
+                   loadFeed(0,function(){
+                          done();
+                   });
+
+        });//berfore each 
+
+
+          it("Had at least one entry", function() {
+               expect($('.feed .entry').length).toBeGreaterThan(0);
+          });
+
+}); //initial entries
+    
+    
+   describe('New Feed Selection', function() {
+             /*TODO: Write a test that ensures when a new feed is loaded
+             by the loadFeed function that the content actually changes.
+              Remember, loadFeed() is asynchronous.*/
+               var feed1; 
+               var feed2;
+       
+            beforeEach(function(done) {
+                    loadFeed(0, function(){
+                        feed1 = $('.feed').html();
+                        done();
+                    });//load
+            });//before
+
+        it ('checking loadFeed loads a new feed', function (done){
+            loadFeed(1,function(){ 
+                    feed2 = $('.feed').html();
+                    expect(feed2).not.toEqual(feed1);
+                    done();
+            });//load
+
+         });   //it 
+   });//describe
 
 
 
